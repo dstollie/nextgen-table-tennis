@@ -1,0 +1,5 @@
+@import 'settings'; // example when the _settings.scss file is in the same folder as your main .scss file
+
+@import '{zurb:foundation-sites}/scss/foundation';
+
+@include foundation-everything; // or individual ones
