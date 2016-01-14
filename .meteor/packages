@@ -23,3 +23,7 @@ kadira:flow-router
 kadira:blaze-layout
 accounts-password
 accounts-ui
+useraccounts:flow-routing
+useraccounts:unstyled
+zimme:active-route
+arillo:flow-router-helpers

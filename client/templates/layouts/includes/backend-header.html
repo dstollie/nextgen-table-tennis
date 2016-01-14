@@ -1,0 +1,32 @@
+<template name="backendHeader">
+	<div class="top-bar">
+		<div class="top-bar-left">
+			<ul class="dropdown menu" data-dropdown-menu>
+				<li class="menu-text"><a href="{{pathFor 'backend.dashboard' }}">Table Tennis Backend</a></li>
+				{{#if currentUser}}
+					<li class="has-submenu">
+						<a href="{{pathFor 'backend.games.overview' }}">Games</a>
+						<ul class="submenu menu vertical" data-submenu>
+							<li><a href="{{pathFor 'backend.games.overview' }}">Overview</a></li>
+							<li><a href="{{pathFor 'backend.games.new' }}">New</a></li>
+						</ul>
+					</li>
+					<li class="has-submenu">
+						<a href="{{pathFor 'backend.users.overview' }}">Users</a>
+						<ul class="submenu menu vertical" data-submenu>
+							<li><a href="{{pathFor 'backend.users.overview' }}">Overview</a></li>
+							<li><a href="{{pathFor 'backend.users.new' }}">New</a></li>
+						</ul>
+					</li>
+				{{/if}}
+			</ul>
+		</div>
+		{{#if currentUser }}
+			<div class="top-bar-right">
+				<ul class="menu">
+					<li>{{> loginButtons }}</li>
+				</ul>
+			</div>
+		{{/if}}
+	</div>
+</template>

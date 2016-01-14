@@ -1,0 +1,47 @@
+<template name="backendGamesOverview">
+	<h1>Game Overzicht</h1>
+
+	<div class="row">
+		<div class="medium-3 columns">
+			{{> backendGamesOverview_filter }}
+		</div>
+		<div class="medium-9 columns">
+			{{> backendGamesOverview_overview }}
+		</div>
+	</div>
+
+</template>
+
+<template name="backendGamesOverview_overview">
+	<table class="hover">
+		<thead>
+		<tr>
+			<th width="100">Game Id</th>
+			<th width="150">Speler 1</th>
+			<th width="150">Speler 2</th>
+			<th width="200">Score</th>
+			<th width="150">Gespeeld op</th>
+		</tr>
+		</thead>
+		<tbody>
+		<tr>
+			<td>#123</td>
+			<td>Aron Rotteveel</td>
+			<td>Erik Wijdemans</td>
+			<td>18 - 21</td>
+			<td>13-01-2015 12:30</td>
+		</tr>
+		</tbody>
+	</table>
+</template>
+
+<template name="backendGamesOverview_filter">
+	<fieldset class="fieldset">
+		<legend>Filter By User</legend>
+		<ul class="no-bullet">
+			<li><input id="checkbox12" type="checkbox"><label for="checkbox12">Checkbox 1</label></li>
+			<li><input id="checkbox22" type="checkbox"><label for="checkbox22">Checkbox 2</label></li>
+			<li><input id="checkbox32" type="checkbox"><label for="checkbox32">Checkbox 3</label></li>
+		</ul>
+	</fieldset>
+</template>
