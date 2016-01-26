@@ -3,4 +3,4 @@ Keep track of your table tennis scores live with this awesome meteor application
 
 ## The Arduino Application
 
-Click [here](https://gist.github.com/dstollie/01b6fe5f267dbf6a6068) to get the code for the arduino
+Click [here](https://gist.github.com/denemio/73d7c51b6071ed88b33c) to get the code for the arduino
