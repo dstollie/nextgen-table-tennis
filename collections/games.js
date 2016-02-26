@@ -36,12 +36,24 @@ App.Collections.Games = new Mongo.Collection('games', {
 			return true;
 		};
 
+		entry.scorePlayer = function(playerNumber) {
+			var currentUser = currentGame.players.length >= 2 ? currentGame.players[playerNumber] : null;
+
+			if (!currentUser) {
+				return false;
+			}
+
+			//@todo: set score
+
+			return true;
+		};
+
 		entry.start = function () {
-			games.update({_id: this._id}, {$set: {active: true, started_at: new Date()}});
+			games.update({_id: this._id}, {$set: {started_at: new Date()}});
 		};
 
 		entry.finish = function () {
-			games.update({_id: this._id}, {$set: {active: false, finished_at: new Date()}});
+			games.update({_id: this._id}, {$set: {finished_at: new Date()}});
 		};
 
 		return entry;
@@ -53,7 +65,7 @@ var games = App.Collections.Games;
 function getCurrentGame() {
 	// Find the first game which is started but and is not finished
 	//return games.findOne({started_at: { $exists: true, $ne: "" }, finished_at: null});
-	return games.findOne({started_at: null, finished_at: null});
+	return games.findOne({finished_at: null});
 }
 
 function createGame() {
@@ -63,9 +75,9 @@ function createGame() {
 
 if (Meteor.isServer) {
 	Meteor.methods({
-		enterGame: function (username) {
+		enterGame: function (tokenId) {
 
-			var currentUser = Meteor.users.findOne({username: username});
+			var currentUser = Meteor.users.findOne({tokenId: tokenId});
 
 			if (!currentUser) {
 				throw new Meteor.Error("non-existent");
@@ -89,6 +101,21 @@ if (Meteor.isServer) {
 
 			if (currentGame.startable()) {
 				currentGame.start();
+			}
+
+			return true;
+		},
+
+		scoreGame: function(playerNumber) {
+
+			var currentGame = getCurrentGame();
+
+			if (!currentGame) {
+				throw new Meteor.Error("no-current-game");
+			}
+
+			if(!currentGame.scorePlayer(playerNumber)) {
+				throw new Meteor.Error("player-number-not-found");
 			}
 
 			return true;
