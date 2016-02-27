@@ -1,5 +1,10 @@
 App.Collections.Games = new Mongo.Collection('games', {
 	transform: function (entry) {
+
+		entry.getJoinedPlayer = function(playerNumber) {
+			return this.players[playerNumber];
+		};
+
 		entry.score = function (userId) {
 
 			this.players[userId]++;
@@ -37,13 +42,16 @@ App.Collections.Games = new Mongo.Collection('games', {
 		};
 
 		entry.scorePlayer = function(playerNumber) {
-			var currentUser = currentGame.players.length >= 2 ? currentGame.players[playerNumber] : null;
+			// Try to find the given user
+			var player = this.getJoinedPlayer(playerNumber);
 
+			// No user found? Bye bye
 			if (!currentUser) {
 				return false;
 			}
 
-			//@todo: set score
+			// Otherwise increment the users' score with 1
+			games.update({_id: this._id, 'players.userId':player._id}, {$inc: {'players.$.score':1 }});
 
 			return true;
 		};
@@ -62,16 +70,47 @@ App.Collections.Games = new Mongo.Collection('games', {
 
 var games = App.Collections.Games;
 
-function getCurrentGame() {
+getCurrentGame = function () {
 	// Find the first game which is started but and is not finished
 	//return games.findOne({started_at: { $exists: true, $ne: "" }, finished_at: null});
 	return games.findOne({finished_at: null});
-}
+};
 
-function createGame() {
-	var gameId = games.insert({created_at: new Date()});
+var getPlayerAttribute = function(playerNumber, attribute) {
+	if(!getCurrentGame())
+		return 0;
+
+	var player = getCurrentGame().getJoinedPlayer(playerNumber);
+
+	if(player)
+		return player[attribute];
+	return 0;
+};
+
+getPlayer = function(playerNumber) {
+	if(!getCurrentGame())
+		return null;
+
+	var player = getCurrentGame().getJoinedPlayer(playerNumber);
+
+	if(player) {
+		var user = Meteor.users.findOne({_id: player.userId});
+
+		user.score = getPlayerAttribute(playerNumber, 'score');
+		user.state = getPlayerAttribute(playerNumber, 'state');
+
+		return user;
+	}
+	return null;
+};
+
+createGame = function() {
+	var gameId = games.insert({
+		finished_at: null,
+		created_at: new Date()
+	});
 	return games.findOne(gameId);
-}
+};
 
 if (Meteor.isServer) {
 	Meteor.methods({

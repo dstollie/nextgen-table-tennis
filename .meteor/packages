@@ -30,3 +30,4 @@ arillo:flow-router-helpers
 nimble:restivus
 fourseven:scss
 zodiase:mdl
+percolate:migrations
