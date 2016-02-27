@@ -46,12 +46,12 @@ App.Collections.Games = new Mongo.Collection('games', {
 			var player = this.getJoinedPlayer(playerNumber);
 
 			// No user found? Bye bye
-			if (!currentUser) {
+			if (!player) {
 				return false;
 			}
 
 			// Otherwise increment the users' score with 1
-			games.update({_id: this._id, 'players.userId':player._id}, {$inc: {'players.$.score':1 }});
+			games.update({_id: this._id, 'players.userId':player.userId}, {$inc: {'players.$.score':1 }});
 
 			return true;
 		};
