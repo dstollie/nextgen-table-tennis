@@ -3,3 +3,6 @@
 @import '{zurb:foundation-sites}/scss/foundation';
 
 @include foundation-everything; // or individual ones
+
+@import 'default';
+@import 'modules/scoreboard';

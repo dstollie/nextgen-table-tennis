@@ -1,0 +1,54 @@
+.scoreboard {
+	position: fixed;
+	height: 100%;
+	width: 100%;
+	color: white;
+	text-transform: capitalize;
+
+	.player-screen {
+		float: left;
+		width: 50%;
+		height: inherit;
+	}
+
+	.player-screen__banner {
+		text-align: center;
+		background-color: #ffe7d2;
+		height: 100px;
+		width: 100%;
+
+		&--serving {
+			background-color: #ff9e54;
+		}
+	}
+
+	.player-screen__score {
+		color: black;
+		text-align: center;
+	}
+
+	.player-screen__profile {
+		position: absolute;
+		bottom: 0;
+		width: inherit;
+	}
+
+	.player-screen__profile-image {
+		width: 100%;
+	}
+
+	.player-screen__profile__info {
+		height: 150px;
+		width: 100%;
+		background-color: black;
+	}
+
+	.profile__info__real-name {
+		text-align: center;
+	}
+
+	.profile__info__nickname {
+		text-align: center;
+	}
+
+}
