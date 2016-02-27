@@ -64,6 +64,10 @@ App.Collections.Games = new Mongo.Collection('games', {
 			games.update({_id: this._id}, {$set: {finished_at: new Date()}});
 		};
 
+		entry.reset = function() {
+			games.update({_id: this._id}, {$set: {players: []}});
+		};
+
 		return entry;
 	}
 });
@@ -156,6 +160,18 @@ if (Meteor.isServer) {
 			if(!currentGame.scorePlayer(playerNumber)) {
 				throw new Meteor.Error("player-number-not-found");
 			}
+
+			return true;
+		},
+
+		resetGame: function() {
+			var currentGame = getCurrentGame();
+
+			if (!currentGame) {
+				throw new Meteor.Error("no-current-game");
+			}
+
+			currentGame.reset();
 
 			return true;
 		}
