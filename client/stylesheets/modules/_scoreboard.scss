@@ -3,7 +3,8 @@
 	height: 100%;
 	width: 100%;
 	color: white;
-	text-transform: capitalize;
+	font-family: ForzaBlack;
+	text-transform: uppercase;
 
 	.player-screen {
 		float: left;
@@ -12,6 +13,7 @@
 	}
 
 	.player-screen__banner {
+		font-family: ForzaBold;
 		text-align: center;
 		background-color: #ffe7d2;
 		height: 100px;
@@ -23,6 +25,7 @@
 	}
 
 	.player-screen__score {
+		font-size: 172px;
 		color: black;
 		text-align: center;
 	}
@@ -38,16 +41,19 @@
 	}
 
 	.player-screen__profile__info {
-		height: 150px;
+		padding: 40px 0;
 		width: 100%;
 		background-color: black;
 	}
 
 	.profile__info__real-name {
+		font-size: 60px;
 		text-align: center;
 	}
 
 	.profile__info__nickname {
+		font-family: ForzaMedium;
+		font-size: 24px;
 		text-align: center;
 	}
 

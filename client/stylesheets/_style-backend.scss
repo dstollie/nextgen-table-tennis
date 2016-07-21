@@ -1,0 +1,8 @@
+// mdl-theme.scss
+$color-primary: "0,0,0";
+$color-accent: "255,255,255";
+@import '{zodiase:mdl}/theme';
+
+@import 'default';
+@import "fonts";
+@import "modules/backend";
