@@ -6,6 +6,11 @@ Template.scoreboard.helpers({
 		return Session.get('counter');
 	},
 
+	playerOneServing: function()
+	{
+		return getCurrentGame() && getCurrentGame().serving_player == 0 ? true : false;
+	},
+
 	playerOne: function () {
 		return getPlayer(0);
 	},

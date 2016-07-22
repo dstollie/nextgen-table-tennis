@@ -14,9 +14,11 @@
 
 	.player-screen__banner {
 		font-family: ForzaBold;
+		font-size: 55px;
+		padding-top: 35px;
+		height: 100px;
 		text-align: center;
 		background-color: #ffe7d2;
-		height: 100px;
 		width: 100%;
 
 		&--serving {
@@ -36,8 +38,10 @@
 		width: inherit;
 	}
 
-	.player-screen__profile-image {
+	.player-screen__profile__image {
 		width: 100%;
+		text-align: center;
+		margin-bottom: -5px;
 	}
 
 	.player-screen__profile__info {
